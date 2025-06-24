@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "bucket1" {
-  name = "gcloud-bucket-using-atlantis"
+  name = "gcloud-bucket-using-at"
   location = "asia-southeast1"
   storage_class = "STANDARD"
   
