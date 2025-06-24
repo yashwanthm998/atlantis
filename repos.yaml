@@ -9,7 +9,7 @@ repos:
       when_modified: ["*.tf", "*.tfvars"]
  
 workflows:
-  default:
+  custom_workflow:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
