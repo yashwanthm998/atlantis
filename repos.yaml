@@ -1,0 +1,27 @@
+version: 3
+repos:
+  - id: github.com/yashwanthm998/atlantis
+    workflow: custom_workflow
+    allowed_overrides: [workflow]
+    allow_custom_workflows: true
+    autoplan:
+      enabled: true
+      when_modified: ["*.tf", "*.tfvars"]
+ 
+workflows:
+  default:
+    plan:
+      steps:
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: |
+            echo "Checking if TF_VAR_GOOGLE_CREDENTIALS is set..."
+            if [ -z "$TF_VAR_GOOGLE_CREDENTIALS" ]; then
+              echo "ERROR: TF_VAR_GOOGLE_CREDENTIALS is not set"
+              exit 1
+            fi
+ 
+            echo "Running Terraform Plan with google_creds from file..."
+            terraform plan -out=tfplan
+    apply:
+      steps:
+        - run: terraform apply tfplan
