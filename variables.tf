@@ -13,12 +13,6 @@ variable "region" {
   type = string
 }
 
-variable "credentials" {
-  description = "Path to your key.json"
-  type = string
-}
-
-
 variable "bucket_zone_location" {
   description = "Bucket Location"
   type = string
