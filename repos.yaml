@@ -9,7 +9,7 @@ repos:
       when_modified: ["*.tf", "*.tfvars"]
  
 workflows:
-  custom_workflow:
+  default:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
@@ -22,6 +22,7 @@ workflows:
  
             echo "Running Terraform Plan with google_creds from file..."
             terraform plan -var-file=terraforms.tfvar -out=tfplan
+
     apply:
       steps:
         - run: terraform apply tfplan
