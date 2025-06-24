@@ -7,7 +7,7 @@ repos:
     autoplan:
       enabled: true
       when_modified: ["*.tf", "*.tfvars"]
- 
+
 workflows:
   custom_workflow:
     plan:
@@ -19,10 +19,9 @@ workflows:
               echo "ERROR: TF_VAR_GOOGLE_CREDENTIALS is not set"
               exit 1
             fi
- 
-            echo "Running Terraform Plan with google_creds from file..."
-            terraform plan -var-file=terraforms.tfvars -out=tfplan
 
+            echo "Running Terraform Plan (terraform.tfvars will be picked automatically)"
+            terraform plan -out=tfplan  # ✅ no -var-file needed
     apply:
       steps:
         - run: terraform apply tfplan
