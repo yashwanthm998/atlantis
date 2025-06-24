@@ -7,7 +7,7 @@ repos:
     autoplan:
       enabled: true
       when_modified: ["*.tf", "*.tfvars"]
-
+ 
 workflows:
   custom_workflow:
     plan:
@@ -20,8 +20,18 @@ workflows:
               exit 1
             fi
 
-            echo "Running Terraform Plan (terraform.tfvars will be picked automatically)"
-            terraform plan -out=tfplan  # ✅ no -var-file needed
+            echo "🟢 Current Working Directory:"
+            pwd
+
+            echo "📄 Listing Files:"
+            ls -la
+
+            echo "📑 Printing terraform.tfvars:"
+            cat terraform.tfvars || echo "terraform.tfvars not found ❌"
+
+            echo "🔁 Running Terraform Plan"
+            terraform plan -out=tfplan
+
     apply:
       steps:
         - run: terraform apply tfplan
