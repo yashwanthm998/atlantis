@@ -1,6 +1,6 @@
 resource "google_storage_bucket" "bucket1" {
-  name = "gcloud-bucket-using-at"
-  location = "asia-southeast1"
+  name = "gcloud-bucket-using-atl"
+  location = var.bucket_zone_location
   storage_class = "STANDARD"
   
   lifecycle_rule {
@@ -14,14 +14,10 @@ resource "google_storage_bucket" "bucket1" {
       with_state = "ANY"
     }
   }
-  retention_policy {
-     is_locked = true
-     retention_period = 432000
-   }
 }
 
 resource "google_storage_bucket_object" "object1" {
   bucket = google_storage_bucket.bucket1.name
-  name = "sample_image"
-  source = "image1.png"
+  name = var.image_name
+  source = var.image_source
 }

@@ -8,8 +8,8 @@ terraform {
 }
 
 provider "google" {
-    project = "terraform-gcp-463406"
-    zone = "asia-southeast1-a"
-    region = "asia-southeast1"
+    project = var.project_id
+    zone = var.zone
+    region = var.region
     credentials = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.json")
 }
