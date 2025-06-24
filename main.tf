@@ -4,7 +4,7 @@ module "bucket_creation" {
   project_id           = var.project_id
   zone                 = var.zone
   region               = var.region
-  credentials          = var.credentials
+  credentials          = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.json")
   bucket_zone_location = var.bucket_zone_location
   image_name           = var.image_name
   image_source         = var.image_source

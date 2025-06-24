@@ -11,5 +11,5 @@ provider "google" {
     project = var.project_id
     zone = var.zone
     region = var.region
-    credentials = var.credentials
+    credentials = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.json")
 }
