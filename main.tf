@@ -1,4 +1,20 @@
 
+terraform {
+  required_providers {
+    google = {
+        source = "hashicorp/google"
+        version = "6.40.0"
+    }
+  }
+}
+
+provider "google" {
+    project = local.project_id
+    zone = var.zone
+    region = var.region
+    credentials = file(local.credentials)
+}
+
 module "bucket_creation" {
   source               = "./modules/Buckets"
   project_id           = local.project_id
