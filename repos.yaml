@@ -20,8 +20,9 @@ workflows:
   default:
     plan:
       steps:
-        - init
-        - run: terraform plan -var-file="terraform.tfvars" -out=tfplan
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform plan -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2"
+            terraform plan -var-file=../terraform.tfvars -out=tfplan
     apply:
       steps:
         - run: terraform apply tfplan
