@@ -9,18 +9,18 @@ terraform {
 }
 
 provider "google" {
-    project = local.project_id
+    project = var.project_id_1
     zone = var.zone
     region = var.region
-    credentials = file(local.credentials)
+    credentials = file(var.credentials_1)
 }
 
 module "bucket_creation" {
   source               = "./modules/Buckets"
-  project_id           = local.project_id
+  project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
-  credentials          = local.credentials
+  credentials          = var.credentials_1
   bucket_zone_location = var.bucket_zone_location
   image_name           = var.image_name
   image_source         = var.image_source
@@ -28,10 +28,10 @@ module "bucket_creation" {
 
 module "vm_creation" {
   source = "./modules/VM"
-  project_id           = local.project_id
+  project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
-  credentials          = local.credentials
+  credentials          = var.credentials_1
   machine_type = var.machine_type
   network = var.network
   subnetwork = var.subnetwork
@@ -39,22 +39,22 @@ module "vm_creation" {
 
 module "vpc_creation" {
   source = "./modules/VPC"
-  project_id           = local.project_id
+  project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
-  credentials          = local.credentials
+  credentials          = var.credentials_1
 }
 
 module "service_account_creation" {
   source = "./modules/Service Account"
-  project_id           = local.project_id
+  project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
-  credentials          = local.credentials
+  credentials          = var.credentials_1
 }
 
-locals {
-  credentials = var.project_selector == "project1" ? var.credentials_1 : var.credentials_2
-  project_id = var.project_selector == "project1" ? var.project_id_1 : var.project_id_2
-}
+# locals {
+#   credentials = var.project_selector == "project1" ? var.credentials_1 : var.credentials_2
+#   project_id = var.project_selector == "project1" ? var.project_id_1 : var.project_id_2
+# }
  
