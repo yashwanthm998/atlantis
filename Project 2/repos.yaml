@@ -1,0 +1,28 @@
+version: 3
+repos:
+  - id: github.com/yashwanthm998/atlantis
+    allow_custom_workflows: true
+    allowed_overrides: [workflow]
+    projects:
+      - dir: "Project 1"
+        workflow: default
+        autoplan:
+          enabled: true
+          when_modified: ["*.tf", "*.tfvars"]
+
+      - dir: "Project 2"
+        workflow: default
+        autoplan:
+          enabled: true
+          when_modified: ["*.tf", "*.tfvars"]
+
+workflows:
+  default:
+    plan:
+      steps:
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform plan -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2"
+            terraform plan -var-file=../terraform.tfvars -out=tfplan
+    apply:
+      steps:
+        - run: terraform apply tfplan
