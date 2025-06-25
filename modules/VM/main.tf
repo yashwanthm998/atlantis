@@ -3,8 +3,7 @@ resource "google_compute_instance" "vm1" {
   zone = var.zone
   machine_type = var.machine_type
   network_interface {
-    network = var.network
-    subnetwork = var.subnetwork
+    network = "default"
   }
   allow_stopping_for_update = true
   
