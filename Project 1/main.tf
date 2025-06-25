@@ -16,7 +16,7 @@ provider "google" {
 }
 
 module "bucket_creation" {
-  source               = "./modules/Buckets"
+  source               = "../modules/Buckets"
   project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
@@ -27,7 +27,7 @@ module "bucket_creation" {
 }
 
 module "vm_creation" {
-  source = "./modules/VM"
+  source = "../modules/VM"
   project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
@@ -38,7 +38,7 @@ module "vm_creation" {
 }
 
 module "vpc_creation" {
-  source = "./modules/VPC"
+  source = "../modules/VPC"
   project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
@@ -46,7 +46,7 @@ module "vpc_creation" {
 }
 
 module "service_account_creation" {
-  source = "./modules/Service Account"
+  source = "../modules/Service Account"
   project_id           = var.project_id_1
   zone                 = var.zone
   region               = var.region
