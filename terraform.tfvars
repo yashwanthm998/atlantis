@@ -13,3 +13,11 @@ image_source = "image1.png"
 machine_type = "e2-standard-8"
 network = "custom-vpc-tf"
 subnetwork = "custome-subnet"
+
+
+module_selector = {
+  vm = false
+  vpc = false
+  bucket = true
+  sa = false
+}
