@@ -45,6 +45,14 @@ module "vpc_creation" {
   credentials          = local.credentials
 }
 
+module "service_account_creation" {
+  source = "./modules/Service Account"
+  project_id           = local.project_id
+  zone                 = var.zone
+  region               = var.region
+  credentials          = local.credentials
+}
+
 locals {
   credentials = var.project_selector == "project1" ? var.credentials_1 : var.credentials_2
   project_id = var.project_selector == "project1" ? var.project_id_1 : var.project_id_2
