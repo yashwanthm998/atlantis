@@ -4,7 +4,7 @@ repos:
     allow_custom_workflows: true
     allowed_overrides: [workflow]
     projects:
-      - dir: Project\ 1
+      - dir: Project 1
         workflow: default
         autoplan:
           enabled: true
