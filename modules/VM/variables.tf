@@ -13,18 +13,8 @@ variable "region" {
   type = string
 }
 
-variable "bucket_zone_location" {
-  description = "Bucket Location"
-  type = string
-}
-
-variable "image_name" {
-  description = "Your image name"
-  type = string
-}
-
-variable "image_source" {
-  description = "Source to you image"
+variable "credentials" {
+  description = "Path to your key.json"
   type = string
 }
 
@@ -41,4 +31,3 @@ variable "subnetwork" {
   
   type = string
 }
-
