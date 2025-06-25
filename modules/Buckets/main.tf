@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "bucket1" {
-  name = "gcloud-bucket-using-tl"
+  name = "gcloud-bucket-using-tl123"
   location = var.bucket_zone_location
   storage_class = "STANDARD"
   
