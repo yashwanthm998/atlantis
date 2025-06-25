@@ -59,3 +59,12 @@ variable "subnetwork" {
   type = string
 }
 
+variable "module_selector" {
+  description = "Enable or disable specific modules"
+  type = object({
+    bucket  = bool
+    vm      = bool
+    vpc     = bool
+    sa      = bool
+  })
+}

@@ -16,8 +16,8 @@ subnetwork = "custome-subnet"
 
 
 module_selector = {
-  vm = false
-  vpc = false
-  bucket = true
-  sa = false
+  bucket  = true
+  vm      = false
+  vpc     = false
+  sa      = false
 }

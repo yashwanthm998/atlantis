@@ -16,7 +16,7 @@ provider "google" {
 }
 
 module "bucket_creation" {
-  count = var.module_selector.bucket ? 1 : 0
+  count                = var.module_selector.bucket ? 1 : 0
   source               = "./modules/Buckets"
   project_id           = local.project_id
   zone                 = var.zone
@@ -28,34 +28,35 @@ module "bucket_creation" {
 }
 
 module "vm_creation" {
-  count = var.module_selector.vm ? 1 : 0
-  source = "./modules/VM"
-  project_id           = local.project_id
-  zone                 = var.zone
-  region               = var.region
-  credentials          = local.credentials
+  count        = var.module_selector.vm ? 1 : 0
+  source       = "./modules/VM"
+  project_id   = local.project_id
+  zone         = var.zone
+  region       = var.region
+  credentials  = local.credentials
   machine_type = var.machine_type
-  network = var.network
-  subnetwork = var.subnetwork
+  network      = var.network
+  subnetwork   = var.subnetwork
 }
 
 module "vpc_creation" {
-  count = var.module_selector.vpc ? 1 : 0 
-  source = "./modules/VPC"
-  project_id           = local.project_id
-  zone                 = var.zone
-  region               = var.region
-  credentials          = local.credentials
+  count       = var.module_selector.vpc ? 1 : 0
+  source      = "./modules/VPC"
+  project_id  = local.project_id
+  zone        = var.zone
+  region      = var.region
+  credentials = local.credentials
 }
 
 module "service_account_creation" {
-  count = var.module_selector.sa ? 1: 0
-  source = "./modules/Service Account"
-  project_id           = local.project_id
-  zone                 = var.zone
-  region               = var.region
-  credentials          = local.credentials
+  count       = var.module_selector.sa ? 1 : 0
+  source      = "./modules/Service Account"
+  project_id  = local.project_id
+  zone        = var.zone
+  region      = var.region
+  credentials = local.credentials
 }
+
 
 locals {
   credentials = var.project_selector == "project1" ? var.credentials_1 : var.credentials_2
