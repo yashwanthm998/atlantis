@@ -25,5 +25,5 @@ variable "vm" {
     network = string
     subnetwork = string
   })
-  default = null
+
 }

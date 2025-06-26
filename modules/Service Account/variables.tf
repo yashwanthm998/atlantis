@@ -23,5 +23,5 @@ variable "sa" {
     account_id = string
     display_name = string
   })
-  default = null
+
 }

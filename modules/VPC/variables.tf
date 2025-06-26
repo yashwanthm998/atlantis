@@ -25,5 +25,5 @@ variable "vpc" {
     ip = string
     firewall_name = string
   })
-  default = null
+
 }
