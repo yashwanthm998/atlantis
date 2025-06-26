@@ -19,17 +19,14 @@ variable "credentials" {
 }
 
 
-variable "bucket_zone_location" {
-  description = "Bucket Location"
-  type = string
-}
+variable "bucket" {
+  type = object({
+    bucket_name = string
+    bucket_zone_location = string
+    storage_class = string
+    image_name = string
+    image_source = string 
+  })
 
-variable "image_name" {
-  description = "Your image name"
-  type = string
-}
-
-variable "image_source" {
-  description = "Source to you image"
-  type = string
+  
 }

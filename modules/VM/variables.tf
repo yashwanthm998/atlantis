@@ -18,16 +18,12 @@ variable "credentials" {
   type = string
 }
 
-variable "machine_type" {
-  
-  type = string
-}
+variable "vm" {
+  type = object({
+    vm_name = string
+    machine_type = string
+    network = string
+    subnetwork = string
+  })
 
-variable "network" {
-  
-  type = string
-}
-variable "subnetwork" {
-  
-  type = string
 }

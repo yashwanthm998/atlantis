@@ -1,7 +1,7 @@
 resource "google_storage_bucket" "bucket1" {
-  name = "gcloud-bucket-using-tl123"
-  location = var.bucket_zone_location
-  storage_class = "STANDARD"
+  name = var.bucket.bucket_name
+  location = var.bucket.bucket_zone_location
+  storage_class = var.bucket.storage_class
   
   lifecycle_rule {
     action {
@@ -18,6 +18,6 @@ resource "google_storage_bucket" "bucket1" {
 
 resource "google_storage_bucket_object" "object1" {
   bucket = google_storage_bucket.bucket1.name
-  name = var.image_name
-  source = var.image_source
+  name = var.bucket.image_name
+  source = var.bucket.image_source
 }

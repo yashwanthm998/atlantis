@@ -17,3 +17,13 @@ variable "credentials" {
   description = "Path to your key.json"
   type = string
 }
+
+variable "vpc" {
+  type = object({
+    network_name = string
+    subnet_name = string
+    ip = string
+    firewall_name = string
+  })
+
+}
