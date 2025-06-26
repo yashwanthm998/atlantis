@@ -10,7 +10,7 @@ credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.jso
 
 module_selector = {
 bucket = {
-    enable =true
+    enable =false
     instance = {
         bucket_name = "gcloud-bucket-using-tl123-p2"
         bucket_zone_location = "asia-southeast1"
@@ -30,7 +30,7 @@ vm = {
   }
 
 vpc = {
-    enable =  false
+    enable =  true
     instance = {
         network_name = "gcloud-network-using-atlantis-p2"
         subnet_name = "atlantis-subnetwork"

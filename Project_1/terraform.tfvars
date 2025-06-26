@@ -6,7 +6,6 @@ credentials_1 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.jso
 credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.json"
 project_selector = "project2"
 
-
 module_selector = {
 bucket = {
     enable =true
@@ -29,7 +28,7 @@ vm = {
   }
 
 vpc = {
-    enable =  false
+    enable =  true
     instance = {
         network_name = "gcloud-network-using-atlantis-p1"
         subnet_name = "atlantis-subnetwork"
