@@ -19,7 +19,7 @@ bucket = {
     }
 } 
 vm = {
-    enable = true
+    enable = false
     instance = {
       vm_name = "gcloud-vm-using-atlantis"
       machine_type = "e2-standard-4"
@@ -29,7 +29,7 @@ vm = {
   }
 
 vpc = {
-    enable =  true
+    enable =  false
     instance = {
         network_name = "gcloud-network-using-atlantis"
         subnet_name = "atlantis-subnetwork"
@@ -38,7 +38,7 @@ vpc = {
     }
 }
 sa = {
-    enable = true
+    enable = false
     instance = {
         account_id = "demo123"
         display_name = "Service account"
