@@ -27,5 +27,6 @@ variable "bucket" {
     image_name = string
     image_source = string 
   })
+  default = null
   
 }

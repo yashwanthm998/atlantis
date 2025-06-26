@@ -22,7 +22,7 @@ module "bucket_creation" {
   zone                 = var.zone
   region               = var.region
   credentials          = local.credentials
-  bucket = var.module_selector["bucket"].enable ? var.module_selector["bucket"].instance : []
+  bucket = var.module_selector["bucket"].enable ? var.module_selector["bucket"].instance : null
 }
 
 module "vm_creation" {
@@ -32,7 +32,7 @@ module "vm_creation" {
   zone         = var.zone
   region       = var.region
   credentials  = local.credentials
-  vm           = var.module_selector["vm"].enable ? var.module_selector["vm"].instance : []
+  vm           = var.module_selector["vm"].enable ? var.module_selector["vm"].instance : null
 }
 
 module "vpc_creation" {
@@ -42,7 +42,7 @@ module "vpc_creation" {
   zone        = var.zone
   region      = var.region
   credentials = local.credentials
-  vpc =  var.module_selector["vpc"].enable ? var.module_selector["vpc"].instance : []
+  vpc =  var.module_selector["vpc"].enable ? var.module_selector["vpc"].instance : null
 }
 
 module "service_account_creation" {
@@ -52,7 +52,7 @@ module "service_account_creation" {
   zone        = var.zone
   region      = var.region
   credentials = local.credentials
-  sa = var.module_selector["sa"].enable ? var.module_selector["sa"].instance : []
+  sa = var.module_selector["sa"].enable ? var.module_selector["sa"].instance : null
 }
 
 
