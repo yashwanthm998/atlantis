@@ -1,21 +1,64 @@
+# version: 3
+# repos:
+#   - id: github.com/yashwanthm998/atlantis
+#     workflow: custom_workflow
+#     allowed_overrides: [workflow]
+#     allow_custom_workflows: true
+#     autoplan:
+#       enabled: true
+#       when_modified: ["*.tf", "*.tfvars"]
+ 
+# workflows:
+#   default:
+#     plan:
+#       steps:
+#         - run: rm -rf .terraform .terraform.lock.hcl
+#         - run: |
+#             terraform plan -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2"
+#             terraform plan -var-file=../terraform.tfvars -out=tfplan
+#     apply:
+#       steps:
+#         - run: terraform apply tfplan
+
+
 version: 3
+ 
 repos:
   - id: github.com/yashwanthm998/atlantis
-    workflow: custom_workflow
     allowed_overrides: [workflow]
     allow_custom_workflows: true
     autoplan:
       enabled: true
       when_modified: ["*.tf", "*.tfvars"]
+    projects:
+      - dir: Project_1
+        workflow: Project_1_workflow
+      - dir: Project_2
+        workflow: Project_2_workflow
  
 workflows:
-  default:
+  Project_1_workflow:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
         - run: |
-            terraform plan -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2"
-            terraform plan -var-file=../terraform.tfvars -out=tfplan
+            terraform plan \
+              -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" \
+              -var-file="Project_1/terraform.tfvars" \
+              -out=tfplan
     apply:
       steps:
-        - run: terraform apply tfplan
+        - run: terraform apply -var-file="Project_1/terraform.tfvars" tfplan
+ 
+  Project_2_workflow:
+    plan:
+      steps:
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: |
+            terraform plan \
+              -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2" \
+              -var-file="Project_2/terraform.tfvars" \
+              -out=tfplan
+    apply:
+      steps:
+        - run: terraform apply -var-file="Project_2/terraform.tfvars" tfplan
