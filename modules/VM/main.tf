@@ -1,5 +1,5 @@
 resource "google_compute_instance" "vm1" {
-  name = var.bucket.bucket_name
+  name = var.vm.vm_name
   zone = var.zone
   machine_type = var.vm.machine_type
   network_interface {
