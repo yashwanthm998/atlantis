@@ -1,16 +1,16 @@
-variable "project_id_1" {
-    description = "Your project id"
-    type = string
-}
+# variable "project_id_1" {
+#     description = "Your project id"
+#     type = string
+# }
 
 variable "project_id_2" {
     description = "Your project id"
     type = string
 }
 
-variable "project_selector" {
-  type = string
-}
+# variable "project_selector" {
+#   type = string
+# }
 
 variable "zone" {
   description = "Instance zone"
@@ -22,9 +22,9 @@ variable "region" {
   type = string
 }
 
-variable "credentials_1" {
-  type = string
-}
+# variable "credentials_1" {
+#   type = string
+# }
 
 variable "credentials_2" {
   type = string
