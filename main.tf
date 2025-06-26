@@ -16,15 +16,13 @@ provider "google" {
 }
 
 module "bucket_creation" {
-  count                = var.module_selector.bucket ? 1 : 0
+  # count                = var.module_selector.bucket ? 1 : 0
   source               = "./modules/Buckets"
   project_id           = local.project_id
   zone                 = var.zone
   region               = var.region
   credentials          = local.credentials
-  bucket_zone_location = var.bucket_zone_location
-  image_name           = var.image_name
-  image_source         = var.image_source
+  bucket = var.module_selector.bucket.enable ? var.module_selector.bucket.instance : []
 }
 
 module "vm_creation" {
@@ -34,9 +32,7 @@ module "vm_creation" {
   zone         = var.zone
   region       = var.region
   credentials  = local.credentials
-  machine_type = var.machine_type
-  network      = var.network
-  subnetwork   = var.subnetwork
+  vm           = var.module_selector.vm.enable ? var.module_selector.vm.instance : []
 }
 
 module "vpc_creation" {
@@ -46,6 +42,7 @@ module "vpc_creation" {
   zone        = var.zone
   region      = var.region
   credentials = local.credentials
+  vpc =  var.module_selector.vpc.enable ? var.module_selector.vpc.instance : []
 }
 
 module "service_account_creation" {
@@ -55,6 +52,7 @@ module "service_account_creation" {
   zone        = var.zone
   region      = var.region
   credentials = local.credentials
+  sa = var.module_selector.sa.enable ? var.module_selector.sa.instance : []
 }
 
 

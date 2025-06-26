@@ -18,3 +18,9 @@ variable "credentials" {
   type = string
 }
 
+variable "sa" {
+  type = object({
+    account_id = string
+    display_name = string
+  })
+}

@@ -30,41 +30,42 @@ variable "credentials_2" {
   type = string
 }
 
-variable "bucket_zone_location" {
-  description = "Bucket Location"
-  type = string
-}
-
-variable "image_name" {
-  description = "Your image name"
-  type = string
-}
-
-variable "image_source" {
-  description = "Source to you image"
-  type = string
-}
-
-variable "machine_type" {
+variable "bucket" {
+  type = object({
+    bucket_name = string
+    bucket_zone_location = string
+    storage_class = string
+    image_name = string
+    image_source = string 
+  })
   
-  type = string
 }
 
-variable "network" {
-  
-  type = string
+variable "vm" {
+  type = object({
+    vm_name = string
+    machine_type = string
+    network = string
+    subnetwork = string
+  })
 }
-variable "subnetwork" {
-  
-  type = string
+
+variable "vpc" {
+  type = object({
+    network_name = string
+    subnet_name = string
+    ip = string
+    firewall_name = string
+  })
+}
+
+variable "sa" {
+  type = object({
+    account_id = string
+    display_name = string
+  })
 }
 
 variable "module_selector" {
-  description = "Enable or disable specific modules"
-  type = object({
-    bucket  = bool
-    vm      = bool
-    vpc     = bool
-    sa      = bool
-  })
+  type = any
 }
