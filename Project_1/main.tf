@@ -1,5 +1,9 @@
 
 terraform {
+    backend "gcs" {
+    bucket = "my-atlantis-tfstate"
+    prefix = "tfstatefile"
+  }
   required_providers {
     google = {
         source = "hashicorp/google"
