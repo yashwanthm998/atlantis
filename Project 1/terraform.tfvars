@@ -1,10 +1,10 @@
 project_id_1 = "terraform-gcp-463406"
-project_id_2 = "terraform-gcp-2-464005"
+# project_id_2 = "terraform-gcp-2-464005"
 zone = "asia-southeast1-a"
 region = "asia-southeast1"
 credentials_1 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.json"
-credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.json"
-project_selector = "project2"
+# credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.json"
+# project_selector = "project2"
 
 
 module_selector = {
