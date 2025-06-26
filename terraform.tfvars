@@ -15,7 +15,7 @@ bucket = {
         bucket_zone_location = "asia-southeast1"
         storage_class = "STANDARD"
         image_name = "sample_image"
-        image_source = "image.png"
+        image_source = "image1.png"
     }
 } 
 vm = {
