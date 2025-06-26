@@ -2,7 +2,7 @@
 terraform {
     backend "gcs" {
     bucket = "my-atlantis-tfstate"
-    prefix = "statefile"
+    prefix = "tfstatefile"
   }
   required_providers {
     google = {
