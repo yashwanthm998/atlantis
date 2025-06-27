@@ -21,12 +21,10 @@ variable "credentials" {
 
 variable "bucket" {
   type = list(object({
-    bucket_name = string
-    bucket_zone_location = string
-    storage_class = string
-    image_name = string
-    image_source = string 
+    bucket_name            = string
+    bucket_zone_location   = string
+    storage_class          = string
+    image_name             = string
+    image_source           = string
   }))
-
-  
 }
