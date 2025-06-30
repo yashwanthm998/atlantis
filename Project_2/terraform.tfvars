@@ -40,7 +40,7 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-      ssh-key =  "/Users/yashwanthm/.ssh/ansible_demo_rocky.pub"
+      ssh-key =  "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ansible_demo_rocky.pub"
     }
   }
 
