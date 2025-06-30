@@ -16,8 +16,9 @@ resource "google_compute_instance" "vm1" {
     access_config {
     }
   }
-  metadata = {
-    ssh-keys = "${file(var.ssh-key)}"
-  }
+metadata = {
+  ssh-keys = "rocky:${file("${var.ssh-key}")}"
+}
+
   tags = ["ssh", "http-server", "https-server"]
 }
