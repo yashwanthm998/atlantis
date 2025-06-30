@@ -13,4 +13,7 @@ resource "google_compute_instance" "vm1" {
       size = 20
     }
   }
+metadata = {
+  ssh-keys = "rocky:${file(var.vm.ssh-key)}"
+}
 }

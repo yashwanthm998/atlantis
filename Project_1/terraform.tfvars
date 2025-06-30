@@ -8,7 +8,7 @@ project_selector = "project2"
 
 module_selector = {
 bucket = {
-    enable =true
+    enable =false
     instance = {
         bucket_name = "gcloud-bucket-using-tl123-p1"
         bucket_zone_location = "asia-southeast1"
@@ -18,17 +18,18 @@ bucket = {
     }
 } 
 vm = {
-    enable = false
+    enable = true
     instance = {
       vm_name = "gcloud-vm-using-atlantis-p1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      ssh-key      = "~/.ssh/ansible_demo_rocky.pub"
     }
   }
 
 vpc = {
-    enable =  true
+    enable =  false
     instance = {
         network_name = "gcloud-network-using-atlantis-p1"
         subnet_name = "atlantis-subnetwork"
