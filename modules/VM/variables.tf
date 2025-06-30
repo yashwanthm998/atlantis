@@ -24,7 +24,9 @@ variable "vm" {
     machine_type = string
     network = string
     subnetwork = string
-    ssh-key = string
   })
+}
 
+variable "ssh-key" {
+  type = string
 }
