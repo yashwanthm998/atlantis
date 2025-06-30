@@ -13,6 +13,11 @@ resource "google_compute_instance" "vm1" {
       size = 20
     }
   }
+  network_interface {
+  network = "default"
+  access_config {}  
+}
+
 metadata = {
   ssh-keys = "${file(var.ssh-key)}"
 }
