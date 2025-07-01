@@ -8,6 +8,7 @@ variable "zone" {
   type = string
 }
 
+
 variable "region" {
   description = "Instance region"
   type = string
