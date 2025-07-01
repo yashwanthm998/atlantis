@@ -7,7 +7,6 @@ credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.jso
 
 # project_selector = "project2"
 
-
 module_selector = {
 bucket = {
     enable =false
@@ -40,7 +39,6 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-      ssh-key =  "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ansible_demo_rocky.pub"
     }
   }
 
