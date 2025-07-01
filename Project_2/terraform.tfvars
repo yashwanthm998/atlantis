@@ -10,7 +10,7 @@ credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.jso
 
 module_selector = {
 bucket = {
-    enable =true
+    enable =false
     instance = [{
         bucket_name = "gcloud-bucket-using-tl1-p2"
         bucket_zone_location = "asia-southeast1"
@@ -40,6 +40,7 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      ssh-key =  "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ansible_demo_rocky.pub"
     }
   }
 
