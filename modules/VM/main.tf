@@ -1,6 +1,6 @@
 resource "google_compute_instance" "vm1" {
 
-  for_each = {for vm in var.vm : vm.vm_name => vm}
+  for_each = {for vm in var.vm.instance : vm.vm_name => vm}
   name         = each.value.vm_name
   zone         = var.zone
   machine_type = each.value.machine_type

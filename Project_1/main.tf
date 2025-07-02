@@ -46,7 +46,7 @@ module "vm_creation" {
   zone         = var.zone
   region       = var.region
   credentials  = var.credentials_1
-  vm           = var.module_selector["vm"]
+  vm           = var.module_selector["vm"].instance
   ssh-key      = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh_key.pub"
 }
 
