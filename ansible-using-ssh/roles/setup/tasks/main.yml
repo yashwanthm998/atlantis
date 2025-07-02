@@ -1,0 +1,22 @@
+---
+    - name: Ensure user yashwanthm194 exists
+      user:
+        name: yashwanthm194
+        state: present
+        shell: /bin/bash
+        create_home: yes
+
+    - name: Ensure /home/data directory exists and is owned by yashwanthm194
+      file:
+        path: /home/data
+        state: directory
+        owner: yashwanthm194
+        group: yashwanthm194
+        mode: '0755'
+
+    - name: Add cron job to write date to /home/data/time.log every 10 minutes
+      cron:
+        name: "Log date to /home/data/time.log"
+        user: yashwanthm194
+        minute: "*/10"
+        job: "/bin/date >> /home/data/time.log"
