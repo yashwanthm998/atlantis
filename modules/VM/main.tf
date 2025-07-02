@@ -38,11 +38,12 @@ resource "null_resource" "wait_for_ssh" {
     EOT
   }
 }
-
-# 📝 Generate Ansible inventory dynamically
 resource "null_resource" "generate_inventory" {
   depends_on = [null_resource.wait_for_ssh]
 
+triggers = {
+  always_run = timestamp()
+}
   provisioner "local-exec" {
     command = <<EOT
 echo "[gcp]" > ../ansible-using-ssh/hosts
@@ -51,12 +52,16 @@ EOT
   }
 }
 
-# ▶️ Run Ansible Playbook
 resource "null_resource" "run_ansible" {
   depends_on = [
     null_resource.wait_for_ssh,
     null_resource.generate_inventory
   ]
+
+  # 👇 This ensures it runs every time
+  triggers = {
+    always_run = timestamp()
+  }
 
   provisioner "local-exec" {
     command = <<EOT
