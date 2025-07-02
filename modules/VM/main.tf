@@ -23,19 +23,6 @@ metadata = {
   tags = ["ssh", "http-server", "https-server"]
 }
 
-resource "google_compute_firewall" "allow-ssh" {
-  name    = "allow-ssh"
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["ssh"]
-}
-
 
 resource "null_resource" "wait_for_ssh" {
   depends_on = [google_compute_instance.vm1]
@@ -66,7 +53,10 @@ EOT
 
 # ▶️ Run Ansible Playbook
 resource "null_resource" "run_ansible" {
-  depends_on = [null_resource.generate_inventory]
+  depends_on = [
+    null_resource.wait_for_ssh,
+    null_resource.generate_inventory
+  ]
 
   provisioner "local-exec" {
     command = <<EOT
