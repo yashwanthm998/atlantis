@@ -19,12 +19,24 @@ bucket = {
 } 
 vm = {
     enable = true
-    instance = {
+    instance = [{
+      vm_name = "gcloud-vm1-using-atlantis-p1"
+      machine_type = "e2-standard-4"
+      network      = "custom-vpc-tf"
+      subnetwork   = "custom-subnet"
+    },
+    {
       vm_name = "gcloud-vm2-using-atlantis-p1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-    }
+    },
+    {
+      vm_name = "gcloud-vm3-using-atlantis-p1"
+      machine_type = "e2-standard-4"
+      network      = "custom-vpc-tf"
+      subnetwork   = "custom-subnet"
+    }]
   }
 
 vpc = {
