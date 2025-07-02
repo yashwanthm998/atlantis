@@ -33,7 +33,7 @@ bucket = {
     }]
 } 
 vm = {
-    enable = false
+    enable = true
     instance = {
       vm_name = "gcloud-vm-using-atlantis-p2"
       machine_type = "e2-standard-4"
