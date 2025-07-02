@@ -1,9 +1,8 @@
 resource "google_compute_instance" "vm1" {
 
-  for_each = {for vm in var.vm.instance : vm.vm_name => vm}
-  name         = each.value.vm_name
+  name         = var.vm.vm_name
   zone         = var.zone
-  machine_type = each.value.machine_type
+  machine_type = var.vm.machine_type
 
   allow_stopping_for_update = true
 
