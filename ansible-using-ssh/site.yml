@@ -1,7 +1,0 @@
----
-- name: Setup cron job to log date every 10 minutes
-  hosts: gcloud-vm-using-atlantis-p1
-  become: true
-  roles:
-    - setup
-
