@@ -31,12 +31,17 @@ resource "null_resource" "wait_for_ssh" {
   provisioner "local-exec" {
     command = <<EOT
       echo "Waiting for SSH to be available..."
-      for i in {1..10}; do
-        nc -zv ${google_compute_instance.vm1.network_interface[0].access_config[0].nat_ip} 22 && break
+      for i in {1..15}; do
+        nc -zv ${google_compute_instance.vm1.network_interface[0].access_config[0].nat_ip} 22 && exit 0
         echo "Retrying SSH in 10 seconds..."
         sleep 10
       done
+      echo "SSH not available after timeout" && exit 1
     EOT
+  }
+
+  triggers = {
+    always_run = timestamp()
   }
 }
 
