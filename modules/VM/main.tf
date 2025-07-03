@@ -1,8 +1,8 @@
 resource "google_compute_instance" "vm1" {
-
-  name         = var.vm.vm_name
+  for_each = {for vms in var.vm : vms.vm_name => vms}
+  name         = each.value.vm_name
   zone         = var.zone
-  machine_type = var.vm.machine_type
+  machine_type = each.value.machine_type
 
   allow_stopping_for_update = true
 
@@ -28,7 +28,7 @@ provisioner "local-exec" {
     ip=${self.network_interface[0].access_config[0].nat_ip}
     
     echo "[gcp]" > ansible/hosts
-    echo "gcloud-vm-using-atlantis-p1 ansible_host=$ip ansible_user=rocky ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
+    echo "${each.value.vm_name} ansible_host=$ip ansible_user=rocky ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
     echo "Waiting for SSH to be ready on $ip..."
     for i in {1..30}; do
       ssh -o StrictHostKeyChecking=no -i /home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh rocky@$ip "echo SSH ready" && break
