@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 echo "Extracting IPs from terraform output..."
 
