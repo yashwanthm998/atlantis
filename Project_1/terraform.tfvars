@@ -26,14 +26,14 @@ vm = {
       subnetwork   = "custom-subnet"
       image = "rocky-linux-9-v20250611"
       username = "rocky" },
-    # {
-    #   vm_name = "gcloud-vm2-using-atlantis-p1"
-    #   machine_type = "e2-standard-4"
-    #   network      = "custom-vpc-tf"
-    #   subnetwork   = "custom-subnet"
-    #   image = "ubuntu-os-cloud/ubuntu-2204-lts"
-    #   username = "ubuntu"
-    # },
+    {
+      vm_name = "gcloud-vm2-using-atlantis-p1"
+      machine_type = "e2-standard-4"
+      network      = "custom-vpc-tf"
+      subnetwork   = "custom-subnet"
+      image = "ubuntu-os-cloud/ubuntu-2204-lts"
+      username = "ubuntu"
+    },
     {
       vm_name = "gcloud-vm3-using-atlantis-p1"
       machine_type = "e2-standard-4"
