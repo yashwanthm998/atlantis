@@ -1,14 +1,14 @@
 version: 3
  
 projects:
-  - dir: project_1
-    workflow: project_1_workflow
+  - dir: Project_1
+    workflow: Project_1_workflow
  
-  - dir: project_2
-    workflow: project_2_workflow
+  - dir: Project_2
+    workflow: Project_2_workflow
  
 workflows:
-  project_1_workflow:
+  Project_1_workflow:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
@@ -17,9 +17,9 @@ workflows:
     apply:
       steps:
         - run: terraform apply tfplan
-        - run: ./Project_1/run.sh
+        - run: ./Project_1
  
-  project_2_workflow:
+  Project_2_workflow:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
