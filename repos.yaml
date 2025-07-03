@@ -49,6 +49,7 @@ workflows:
     apply:
       steps:
         - run: terraform apply -var-file="Project_1/terraform.tfvars" tfplan
+        - run: ./run-ansible.sh
  
   Project_2_workflow:
     plan:
