@@ -1,6 +1,6 @@
 ---
 - name: Setup cron job to log date every 10 minutes
-  hosts: gcloud-vm-using-atlantis-p1
+  hosts: all
   become: true
   tasks:
    - name: Ensure user yashwanthm194 exists

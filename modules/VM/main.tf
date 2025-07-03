@@ -38,7 +38,6 @@ metadata = {
 provisioner "local-exec" {
   command = <<EOT
     ip=${self.network_interface[0].access_config[0].nat_ip}
-    echo "[gcp]" > ansible/hosts
     echo "${each.value.vm_name} ansible_host=$ip ansible_user=${each.value.username} ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
     ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
   EOT
