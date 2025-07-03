@@ -20,12 +20,14 @@ variable "credentials" {
 }
 
 variable "vm" {
-  type = object({
+  type = list(object({
     vm_name = string
     machine_type = string
     network = string
     subnetwork = string
-  })
+    image = string
+    username = string
+  }))
 }
 
 variable "ssh-key" {
