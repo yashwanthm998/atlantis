@@ -23,16 +23,16 @@ metadata = {
 
   tags = ["ssh", "http-server", "https-server"]
 
-provisioner "remote-exec" {
-  inline = [ "echo SSH is ready on $(hostname)" ]
+# provisioner "remote-exec" {
+#   inline = [ "echo SSH is ready on $(hostname)" ]
 
-  connection {
-    type        = "ssh"
-    user        = each.value.username
-    private_key = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh")
-    host        = self.network_interface[0].access_config[0].nat_ip
-  }
-}
+#   connection {
+#     type        = "ssh"
+#     user        = each.value.username
+#     private_key = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh")
+#     host        = self.network_interface[0].access_config[0].nat_ip
+#   }
+# }
 
 
 provisioner "local-exec" {
