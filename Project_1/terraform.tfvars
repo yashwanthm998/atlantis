@@ -24,12 +24,14 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      image = "rocky-linux-9-v20250611"
       username = "rocky" },
     {
       vm_name = "gcloud-vm2-using-atlantis-p1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      image = "ubuntu-2204-jammy-v20240605"
       username = "ubuntu"
     },
     {
@@ -37,6 +39,7 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      image = "centos-9-stream-v20240605"
       username = "centos"
     }]
 

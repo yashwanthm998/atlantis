@@ -8,7 +8,7 @@ resource "google_compute_instance" "vm1" {
 
   boot_disk {
     initialize_params {
-      image = "rocky-linux-9-v20250611"
+      image = each.value.image
       size  = 20
     }
   }
