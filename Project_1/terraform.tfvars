@@ -31,7 +31,7 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-      image = "ubuntu-2204-jammy-v20240605"
+      image = "ubuntu-os-cloud/ubuntu-2204-lts"
       username = "ubuntu"
     },
     {
@@ -39,7 +39,7 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-      image = "centos-9-stream-v20240605"
+      image = "centos-cloud/centos-stream-9"
       username = "centos"
     }]
 
