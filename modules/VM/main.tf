@@ -42,7 +42,5 @@ provisioner "local-exec" {
 
 }
 
-output "ext_ip" {
-  value = google_compute_instance.vm1[each.key].access_config[0].nat_ip
-}
+
 
