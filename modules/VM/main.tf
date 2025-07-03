@@ -22,4 +22,17 @@ metadata = {
 }
 
   tags = ["ssh", "http-server", "https-server"]
+
+     provisioner "local-exec" {
+    command = <<EOT
+      echo "[gcp]" > ansible/hosts
+      echo "gcloud-vm-using-atlantis-p1 ansible_host=${self.network_interface[0].access_config[0].nat_ip} ansible_user=rocky ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
+      ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
+    EOT
+  }
 }
+
+output "ext_ip" {
+  value = google_compute_instance.vm1.network_interface[0].access_config[0].nat_ip
+}
+
