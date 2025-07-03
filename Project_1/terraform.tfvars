@@ -24,18 +24,20 @@ vm = {
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-    },
+      username = "rocky" },
     {
       vm_name = "gcloud-vm2-using-atlantis-p1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      username = "ubuntu"
     },
     {
       vm_name = "gcloud-vm3-using-atlantis-p1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
+      username = "centos"
     }]
 
   }

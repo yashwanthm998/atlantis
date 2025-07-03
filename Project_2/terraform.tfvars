@@ -17,13 +17,13 @@ bucket = {
         image_name = "sample_image"
         image_source = "image1.png"
     },
-    # {
-    #     bucket_name = "gcloud-bucket-using-tl2-p2"
-    #     bucket_zone_location = "asia-southeast1"
-    #     storage_class = "STANDARD"
-    #     image_name = "sample_image"
-    #     image_source = "image1.png"
-    # },
+    {
+        bucket_name = "gcloud-bucket-using-tl2-p2"
+        bucket_zone_location = "asia-southeast1"
+        storage_class = "STANDARD"
+        image_name = "sample_image"
+        image_source = "image1.png"
+    },
     {
         bucket_name = "gcloud-bucket-using-t3-p2"
         bucket_zone_location = "asia-southeast1"
@@ -34,12 +34,27 @@ bucket = {
 } 
 vm = {
     enable = false
-    instance = {
+    instance = [{
       vm_name = "gcloud-vm-using-atlantis-p2"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
-    }
+      username = "rocky"
+    },
+    {
+      vm_name = "gcloud-vm2-using-atlantis-p2"
+      machine_type = "e2-standard-4"
+      network      = "custom-vpc-tf"
+      subnetwork   = "custom-subnet"
+      username = "ubuntu"
+    },
+    {
+      vm_name = "gcloud-vm3-using-atlantis-p2"
+      machine_type = "e2-standard-4"
+      network      = "custom-vpc-tf"
+      subnetwork   = "custom-subnet"
+      username = "centos"
+    }]
   }
 
 vpc = {
