@@ -37,7 +37,7 @@ metadata = {
 provisioner "local-exec" {
   command = <<EOT
     ip=${self.network_interface[0].access_config[0].nat_ip}
-  
+    ssh-keygen -R "$ip" || true
     echo "${each.value.vm_name} ansible_host=$ip ansible_user=${each.value.username} ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
     echo "Waiting for SSH to be ready on $ip..."
     for i in {1..30}; do
@@ -46,7 +46,7 @@ provisioner "local-exec" {
       sleep 5
     done
 
-    ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
+    ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml || true
   EOT
 }
 
