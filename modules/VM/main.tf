@@ -29,7 +29,7 @@ metadata = {
 #   connection {
 #     type        = "ssh"
 #     user        = each.value.username
-#     private_key = file("/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh")
+#     private_key = file("/home/atlantis/.atlantis/ssh")
 #     host        = self.network_interface[0].access_config[0].nat_ip
 #   }
 # }
@@ -38,10 +38,10 @@ provisioner "local-exec" {
   command = <<EOT
     ip=${self.network_interface[0].access_config[0].nat_ip}
     ssh-keygen -R "$ip" || true
-    echo "${each.value.vm_name} ansible_host=$ip ansible_user=${each.value.username} ansible_ssh_private_key_file=/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh" >> ansible/hosts
+    echo "${each.value.vm_name} ansible_host=$ip ansible_user=${each.value.username} ansible_ssh_private_key_file=/home/atlantis/.atlantis/ssh" >> ansible/hosts
     echo "Waiting for SSH to be ready on $ip..."
     for i in {1..30}; do
-      ssh -o StrictHostKeyChecking=no -i /home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh ${each.value.vm_name}@$ip "echo SSH ready" && break
+      ssh -o StrictHostKeyChecking=no -i /home/atlantis/.atlantis/ssh ${each.value.vm_name}@$ip "echo SSH ready" && break
       echo "SSH not ready yet... retrying in 5s"
       sleep 5
     done

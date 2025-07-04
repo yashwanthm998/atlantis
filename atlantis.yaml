@@ -1,18 +1,18 @@
 
 version: 3
  
-repos:
-  - id: github.com/yashwanthm998/atlantis
-    allowed_overrides: [workflow]
-    allow_custom_workflows: true
-    autoplan:
-      enabled: true
-      when_modified: ["*.tf", "*.tfvars"]
-    projects:
-      - dir: Project_1
-        workflow: Project_1_workflow
-      - dir: Project_2
-        workflow: Project_2_workflow
+# repos:
+#   - id: github.com/yashwanthm998/atlantis
+#     allowed_overrides: [workflow]
+#     allow_custom_workflows: true
+#     autoplan:
+#       enabled: true
+#       when_modified: ["*.tf", "*.tfvars"]
+projects:
+  - dir: Project_1
+    workflow: Project_1_workflow
+  - dir: Project_2
+    workflow: Project_2_workflow
  
 workflows:
   Project_1_workflow:
