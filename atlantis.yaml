@@ -19,6 +19,7 @@ workflows:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform init
         - run: |
             terraform plan \
               -var="GOOGLE_CREDENTIALS1=$TF_VAR_GOOGLE_CREDENTIALS1" \
@@ -32,6 +33,7 @@ workflows:
     plan:
       steps:
         - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform init
         - run: |
             terraform plan \
               -var="GOOGLE_CREDENTIALS2=$TF_VAR_GOOGLE_CREDENTIALS2" \
