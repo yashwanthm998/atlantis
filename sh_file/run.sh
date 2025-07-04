@@ -20,10 +20,13 @@ cat ansible/hosts
 
 # Wait for SSH to be ready on all IPs
 echo ">>> Waiting for SSH to be ready on all VMs..."
-for ip in $(echo "$VM_JSON" | jq -r '.[] | .ip'); do
-  echo ">>> Checking SSH on $ip"
+for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value.ip)"'); do
+  username=$(echo "$vm" | cut -d@ -f1)
+  ip=$(echo "$vm" | cut -d@ -f2)
+  echo ">>> Checking SSH on $ip with user $username"
+
   for i in {1..15}; do
-    if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh \(.value.username)@"$ip" "echo SSH Ready"; then
+    if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /home/atlantis/.atlantis/ssh "$username@$ip" "echo SSH Ready"; then
       echo " SSH ready on $ip"
       break
     else
@@ -32,6 +35,7 @@ for ip in $(echo "$VM_JSON" | jq -r '.[] | .ip'); do
     fi
   done
 done
+
 
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
