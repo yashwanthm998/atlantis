@@ -67,3 +67,6 @@ module "vpc_creation" {
 #   project_id = var.project_selector == "project1" ? var.project_id_1 : var.project_id_2
 # }
  
+ output "vm_info" {
+  value = module.vm_creation[0].vm_info
+}
