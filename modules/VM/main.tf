@@ -50,8 +50,6 @@ provisioner "local-exec" {
   EOT
 }
 
-
-
 }
 
 
