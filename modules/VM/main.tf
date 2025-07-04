@@ -29,11 +29,11 @@ output "vm_info" {
     for name, vm in google_compute_instance.vm1 :
     name => {
       ip       = vm.network_interface[0].access_config[0].nat_ip
-      username = var.vm[name].username
+      username = vm.metadata["ssh-keys"] != null ? split(":", vm.metadata["ssh-keys"])[0] : "rocky"
     }
-    
   }
 }
+
 
  
 
