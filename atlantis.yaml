@@ -24,7 +24,7 @@ workflows:
               -out=tfplan
     apply:
       steps:
-        - run: terraform apply -var-file="terraform.tfvars" tfplan
+        - run: terraform apply tfplan
 
   Project_2_workflow:
     plan:
