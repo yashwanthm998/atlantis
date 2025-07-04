@@ -1,41 +1,40 @@
 #!/bin/bash
-set -e
-set -x
-SSH_KEY_PATH="/home/atlantis/.atlantis/ssh_key"
- 
-echo "[Atlantis] Running post-apply script..."
- 
-echo "[Atlantis] Fetching VM IPs from Terraform output..."
-terraform output -json vm_public_ips > ../vm_ips.json
- 
-cd ../ansible
- 
-rm -f inventory.txt
- 
-echo "[web]" > inventory.txt
- 
-mkdir -p ~/.ssh
-touch ~/.ssh/known_hosts
- 
-for ip in $(jq -r '.[]' ../vm_ips.json); do
-  echo "[Atlantis] Waiting for SSH to become available on $ip..."
-  for i in {1..12}; do  # Wait up to 60 seconds (12 * 5s)
-    if ssh -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no -o ConnectTimeout=5 rocky@$ip "echo SSH ready" >/dev/null 2>&1; then
-      echo "[Atlantis] SSH is ready on $ip"
+set -euo pipefail
+set -x  # Enable debugging output
+
+echo ">>> Extracting VM info from Terraform output..."
+VM_JSON=$(terraform output -json vm_info)
+
+# Check if terraform output is valid
+if [ -z "$VM_JSON" ]; then
+  echo " ERROR: Terraform output is empty. Are the VMs created?"
+  exit 1
+fi
+
+# Prepare inventory
+echo ">>> Generating dynamic Ansible inventory at ansible/hosts"
+echo "" > ansible/hosts
+echo "$VM_JSON" | jq -r 'to_entries[] | "\(.key) ansible_host=\(.value.ip) ansible_user=\(.value.username) ansible_ssh_private_key_file=/home/atlantis/.atlantis/ssh"' >> ansible/hosts
+
+cat ansible/hosts
+
+# Wait for SSH to be ready on all IPs
+echo ">>> Waiting for SSH to be ready on all VMs..."
+for ip in $(echo "$VM_JSON" | jq -r '.[] | .ip'); do
+  echo ">>> Checking SSH on $ip"
+  for i in {1..15}; do
+    if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /home/atlantis/.atlantis/repos/yashwanthm998/atlantis/ssh \(.value.username)@"$ip" "echo SSH Ready"; then
+      echo " SSH ready on $ip"
       break
     else
-      echo "[Atlantis] SSH not ready on $ip, retrying in 5 seconds..."
+      echo "⏳ SSH not ready yet on $ip... retrying in 5s"
       sleep 5
     fi
   done
- 
-  ssh-keygen -R "$ip" || true
-  echo "$ip ansible_user=sandeeppaul ansible_ssh_private_key_file=\"$SSH_KEY_PATH\" ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.txt
 done
- 
-echo "[Atlantis] Generated inventory:"
-cat inventory.txt
- 
-echo "[Atlantis] Running Ansible playbook..."
-ansible-playbook -i inventory.txt main.yml
- 
+
+# Run Ansible Playbook
+echo ">>> Running Ansible Playbook..."
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
+
+echo " Ansible execution completed."
