@@ -38,6 +38,6 @@ done
 
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml || true
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
 
 echo " Ansible execution completed."
