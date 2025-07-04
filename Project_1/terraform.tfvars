@@ -2,8 +2,8 @@ project_id_1 = "terraform-gcp-463406"
 project_id_2 = "terraform-gcp-2-464005"
 zone = "asia-southeast1-a"
 region = "asia-southeast1"
-credentials_1 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/creds.json"
-credentials_2 = "/home/atlantis/.atlantis/repos/yashwanthm998/atlantis/cred2.json"
+credentials_1 = "/home/atlantis/.atlantis/creds.json"
+credentials_2 = "/home/atlantis/.atlantis/cred2.json"
 project_selector = "project2"
 
 module_selector = {
@@ -25,24 +25,24 @@ vm = {
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
       image = "rocky-linux-9-v20250611"
-      username = "rocky" },
-    {
-      vm_name = "gcloud-vm2-using-atlantis-p1"
-      machine_type = "e2-standard-4"
-      network      = "custom-vpc-tf"
-      subnetwork   = "custom-subnet"
-      image = "ubuntu-os-cloud/ubuntu-2204-lts"
-      username = "ubuntu"
-    },
-    {
-      vm_name = "gcloud-vm3-using-atlantis-p1"
-      machine_type = "e2-standard-4"
-      network      = "custom-vpc-tf"
-      subnetwork   = "custom-subnet"
-      image = "centos-cloud/centos-stream-9"
-      username = "centos"
-    }]
-
+      username = "yashwanthm" },
+    # {
+    #   vm_name = "gcloud-vm2-using-atlantis-p1"
+    #   machine_type = "e2-standard-4"
+    #   network      = "custom-vpc-tf"
+    #   subnetwork   = "custom-subnet"
+    #   image = "ubuntu-os-cloud/ubuntu-2204-lts"
+    #   username = "ubuntu"
+    # },
+    # {
+    #   vm_name = "gcloud-vm3-using-atlantis-p1"
+    #   machine_type = "e2-standard-4"
+    #   network      = "custom-vpc-tf"
+    #   subnetwork   = "custom-subnet"
+    #   image = "centos-cloud/centos-stream-9"
+    #   username = "centos"
+    # }]
+    ]
   }
 
 vpc = {

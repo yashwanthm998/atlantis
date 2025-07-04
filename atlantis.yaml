@@ -1,0 +1,42 @@
+version: 3
+
+projects:
+  - dir: Project_1
+    workflow: Project_1_workflow
+    autoplan:
+      enabled: true
+      when_modified: ["*.tf", "*.tfvars"]
+  - dir: Project_2
+    workflow: Project_2_workflow
+    autoplan:
+      enabled: true
+      when_modified: ["*.tf", "*.tfvars"]
+
+workflows:
+  Project_1_workflow:
+    plan:
+      steps:
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform init
+        - run: |
+            terraform plan \
+              -var-file="terraform.tfvars" \
+              -out=tfplan
+    apply:
+      steps:
+        - run: terraform apply tfplan
+        - run: terraform output -json vm_info > ../vm_ips.json
+        - run: ../sh_file/run.sh
+
+  Project_2_workflow:
+    plan:
+      steps:
+        - run: rm -rf .terraform .terraform.lock.hcl
+        - run: terraform init
+        - run: |
+            terraform plan \
+              -var-file="terraform.tfvars" \
+              -out=tfplan
+    apply:
+      steps:
+        - run: terraform apply -var-file="terraform.tfvars" tfplan
