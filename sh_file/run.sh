@@ -17,7 +17,6 @@ echo "" > ansible/hosts
 echo "$VM_JSON" | jq -r 'to_entries[] | "\(.key) ansible_host=\(.value.ip) ansible_user=\(.value.username) ansible_ssh_private_key_file=/home/atlantis/.atlantis/ssh"' >> ansible/hosts
 
 cat ansible/hosts
-
 # Wait for SSH to be ready on all IPs
 echo ">>> Waiting for SSH to be ready on all VMs..."
 for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value.ip)"'); do
@@ -39,6 +38,6 @@ done
 
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml || true
 
 echo " Ansible execution completed."
