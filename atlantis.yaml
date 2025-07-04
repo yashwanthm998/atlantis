@@ -25,7 +25,7 @@ workflows:
     apply:
       steps:
         - run: terraform apply tfplan
-        - run: ..sh_file/run.sh
+        - run: ../sh_file/run.sh
 
   Project_2_workflow:
     plan:
