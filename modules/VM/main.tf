@@ -1,4 +1,4 @@
-resource "google_compute_disk" "extra-disk" {
+resource "google_compute_disk" "extra_disk" {
   for_each = {for vms in var.vm : vms.vm_name => vms}
   name = "${each.key}-extra-disk"
   type = "pd-standard"
