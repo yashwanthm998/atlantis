@@ -1,5 +1,5 @@
 ---
-- name: Setup cron job to log date every 10 minutes
+- name: Install mongo and setup lvm
   hosts: all
   become: true
   roles:
