@@ -1,3 +1,12 @@
+resource "google_compute_disk" "extra-disk" {
+  for_each = {for vms in var.vm : vms.vm_name => vms}
+  name = "${each.key}-extra-disk"
+  type = "pd-standard"
+  zone = var.zone
+  size = 50
+}
+
+
 resource "google_compute_instance" "vm1" {
   for_each = {for vms in var.vm : vms.vm_name => vms}
   name         = each.value.vm_name
@@ -11,6 +20,11 @@ resource "google_compute_instance" "vm1" {
       image = each.value.image
       size  = 20
     }
+  }
+  attached_disk {
+    source      = google_compute_disk.extra_disk[each.key].self_link
+    device_name = "extra-disk"
+    mode        = "READ_WRITE"
   }
   network_interface{
     network = "default"

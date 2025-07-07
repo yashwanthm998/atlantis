@@ -26,7 +26,7 @@ workflows:
       steps:
         - run: terraform apply tfplan
         - run: terraform output -json vm_info > ../vm_ips.json
-        - run: ../sh_file/run.sh
+        # - run: ../sh_file/run.sh
 
   Project_2_workflow:
     plan:
