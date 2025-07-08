@@ -1,4 +1,10 @@
 ---
+
+- name: Install LVM2 package
+  ansible.builtin.yum:
+    name: lvm2
+    state: present
+
 - name: Create single partition on the disk
   community.general.parted:
     device: /dev/sdb
@@ -7,14 +13,9 @@
     fs_type: ext4
     resize: yes
 
-- name: Install LVM2 package
-  ansible.builtin.yum:
-    name: lvm2
-    state: present
-
 - name: Create a physical volume
-  community.general.lvm_pv:
-    device: "/dev/sdb1"
+  ansible.builtin.command:
+    cmd: "pvcreate /dev/sdb1"
 
 - name: Create a volume group
   ansible.builtin.lvg:
