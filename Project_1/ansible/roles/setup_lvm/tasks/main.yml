@@ -1,6 +1,6 @@
 ---
 - name: Create single partition on the disk
-  parted:
+  community.general.parted:
     device: /dev/sdb
     number: 1
     state: present
