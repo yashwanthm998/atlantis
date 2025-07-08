@@ -21,7 +21,7 @@ vm = {
     enable = true
     instance = [
         {
-      vm_name = "gcloud-vm-using-atlantis-p1"
+      vm_name = "example-vm1"
       machine_type = "e2-standard-4"
       network      = "custom-vpc-tf"
       subnetwork   = "custom-subnet"
@@ -29,7 +29,7 @@ vm = {
       username = "yashwanthm" },
 
       {
-        vm_name = "gcloud-vm2-using-atlantis-p1"
+        vm_name = "example-vm2"
         machine_type = "e2-standard-4"
         network      = "custom-vpc-tf"
         subnetwork   = "custom-subnet"

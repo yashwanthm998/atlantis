@@ -35,7 +35,6 @@ for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value
   done
 done
 
-ansible-galaxy collection install -r ansible/requirements.yml --force
 
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
