@@ -13,7 +13,7 @@ fi
 
 # Prepare inventory
 echo ">>> Generating dynamic Ansible inventory at ansible/hosts"
-echo "" > ansible/hosts
+echo "[install_mongo]" > ansible/hosts
 echo "$VM_JSON" | jq -r 'to_entries[] | "\(.key) ansible_host=\(.value.ip) ansible_user=\(.value.username) ansible_ssh_private_key_file=/home/atlantis/.atlantis/ssh"' >> ansible/hosts
 
 cat ansible/hosts
