@@ -1,23 +1,22 @@
 ---
-  - name: Add MongoDB repo file
-    copy:
-      dest: /etc/yum.repos.d/mongodb-org-6.0.repo
-      content: |
-          [mongodb-org-6.0]
-          name=MongoDB Repository
-          baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/6.0/x86_64/
-          gpgcheck=1
-          enabled=1
-          gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
+- name: Add MongoDB repo file
+  copy:
+    dest: /etc/yum.repos.d/mongodb-org-6.0.repo
+    content: |
+      [mongodb-org-6.0]
+      name=MongoDB Repository
+      baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/6.0/x86_64/
+      gpgcheck=1
+      enabled=1
+      gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
 
-  - name: Install MongoDB packages
-    shell:
-      name: mongodb-org
-      state: present
+- name: Install MongoDB packages
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: present
 
-  - name: Start and enable MongoDB service
-    systemd:
-      name: mongod
-      enabled: true
-      state: started
-  
+- name: Start and enable MongoDB service
+  systemd:
+    name: mongod
+    enabled: true
+    state: started
