@@ -5,13 +5,21 @@
     name: lvm2
     state: present
 
+- name: Check if /dev/sdb1 exists
+  stat:
+    path: /dev/sdb1
+  register: sdb1_stat
+
 - name: Create single partition on the disk
-  community.general.parted:
+  when: not sdb1_stat.stat.exists
+  parted:
     device: /dev/sdb
     number: 1
     state: present
+    part_type: primary
     fs_type: ext4
     resize: yes
+
 
 - name: Create a physical volume
   ansible.builtin.command:
