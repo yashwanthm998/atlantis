@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-set -x  # Enable debugging output
+set -x  
 
 echo ">>> Extracting VM info from Terraform output..."
 VM_JSON=$(terraform output -json vm_info)
@@ -35,6 +35,7 @@ for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value
   done
 done
 
+ansible-galaxy collection install -r ansible/requirements.yml --force
 
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
