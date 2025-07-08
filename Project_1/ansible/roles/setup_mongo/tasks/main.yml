@@ -17,7 +17,7 @@
       gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
 
 - name: Install MongoDB packages
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name: mongodb-org
     state: present
 
