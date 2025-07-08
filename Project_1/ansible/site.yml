@@ -1,7 +1,12 @@
 ---
 - name: Install mongo and setup lvm
-  hosts: all
+  hosts: install_mongo
   become: true
   roles:
     - setup_mongo
-    - setup_lvm
+
+- name: Install mongo and setup lvm
+  hosts: install_lvm
+  become: true
+  roles:
+    - setup_mongo
