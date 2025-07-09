@@ -1,12 +1,18 @@
 ---
-- name: Install mongo and setup lvm
-  hosts: install_mongo
+- name : Base OS
+  hosts: all
   become: true
   roles:
-    - setup_mongo
+    - { role: update_os, tags: ["os_update"]}
+    
+- name: Install MongoDB
+  hosts: all
+  become: true
+  roles:
+    - { role: setup_mongo, tags: ["mongo_setup"] }
 
-- name: Install mongo and setup lvm
-  hosts: install_lvm
+- name: Setup LVM
+  hosts: all
   become: true
   roles:
-    - setup_mongo
+    - { role: setup_lvm, tags: ["lvm_setup"] }
