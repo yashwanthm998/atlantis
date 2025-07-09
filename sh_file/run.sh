@@ -36,8 +36,12 @@ for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value
 done
 
 
+LOG_DIR="../ansible_logs"
+mkdir -p "$LOG_DIR"
+LOG_FILE="$LOG_DIR/ansible_$(date +%Y%m%d_%H%M%S).log"
+
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml --tags os_update
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml --tags mongo_setup | tee "$LOG_FILE"
 
 echo " Ansible execution completed."
