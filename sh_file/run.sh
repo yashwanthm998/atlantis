@@ -13,7 +13,7 @@ fi
 
 # Prepare inventory
 echo ">>> Generating dynamic Ansible inventory at ansible/hosts"
-echo "[install_mongo]" > ansible/hosts
+echo "" > ansible/hosts
 echo "$VM_JSON" | jq -r 'to_entries[] | "\(.key) ansible_host=\(.value.ip) ansible_user=\(.value.username) ansible_ssh_private_key_file=/home/atlantis/.atlantis/ssh"' >> ansible/hosts
 
 cat ansible/hosts
@@ -36,8 +36,12 @@ for vm in $(echo "$VM_JSON" | jq -r 'to_entries[] | "\(.value.username)@\(.value
 done
 
 
+LOG_DIR="../ansible_logs"
+mkdir -p "$LOG_DIR"
+LOG_FILE="$LOG_DIR/ansible_$(date +%Y%m%d_%H%M%S).log"
+
 # Run Ansible Playbook
 echo ">>> Running Ansible Playbook..."
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml --limit install_mongo
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/site.yml --tags mongo_setup | tee "$LOG_FILE"
 
 echo " Ansible execution completed."
